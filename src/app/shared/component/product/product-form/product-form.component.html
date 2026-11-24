@@ -1,0 +1,363 @@
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="col-md-10">
+
+      <div class="card shadow">
+
+        <div class="card-header">
+          <h4>{{ IsinEditMode ? 'Update Product' : 'Add Product' }}</h4>
+        </div>
+
+        <div class="card-body">
+
+          <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+
+            <div class="row">
+
+              <div class="col-md-6">
+
+                <div class="form-group mb-3">
+                  <label>Title</label>
+                  <input
+                    type="text"
+                    formControlName="title"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['title'].touched && controls['title'].hasError('required')">
+                    Title is required
+                  </small>
+                </div>
+
+                <!-- <div class="form-group mb-3">
+                  <label>Brand</label>
+                  <input
+                    type="text"
+                    formControlName="brand"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['brand'].touched && controls['brand'].hasError('required')">
+                    Brand is required
+                  </small>
+                </div> -->
+
+                <div class="form-group mb-3">
+                  <label>Quantity</label>
+                  <input
+                    type="number"
+                    formControlName="quantity"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['quantity'].touched && controls['quantity'].hasError('required')">
+                    Quantity is required
+                  </small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label>Rating</label>
+                  <input
+                    type="number"
+                    formControlName="rating"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['rating'].touched && controls['rating'].hasError('required')">
+                    Rating is required
+                  </small>
+                </div>
+
+              </div>
+
+              <div class="col-md-6">
+
+                <div class="form-group mb-3">
+                  <label>Category</label>
+                  <input
+                    type="text"
+                    formControlName="category"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['category'].touched && controls['category'].hasError('required')">
+                    Category is required
+                  </small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label>Price</label>
+                  <input
+                    type="number"
+                    formControlName="price"
+                    class="form-control">
+
+                  <small class="text-danger"
+                    *ngIf="controls['price'].touched && controls['price'].hasError('required')">
+                    Price is required
+                  </small>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label>Status</label>
+
+                  <select
+                    formControlName="status"
+                    class="form-control">
+
+                    <option value="Available">Available</option>
+                    <option value="Not-available">Not-available</option>
+
+                  </select>
+
+                  <small class="text-danger"
+                    *ngIf="controls['status'].touched && controls['status'].hasError('required')">
+                    Status is required
+                  </small>
+                </div>
+
+              </div>
+
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Description</label>
+
+              <textarea
+                formControlName="description"
+                class="form-control">
+              </textarea>
+
+              <small class="text-danger"
+                *ngIf="controls['description'].touched && controls['description'].hasError('required')">
+                Description is required
+              </small>
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Image</label>
+
+              <input
+                type="text"
+                formControlName="image"
+                class="form-control"
+                placeholder="Paste image URL">
+            </div>
+            <!-- <button class="btn btn-outline-info"
+            >Add Product</button> -->
+            <button
+              mat-raised-button
+              type="submit"
+              *ngIf="!IsinEditMode"
+              class="btn btn-outline-primary">
+              Add Product
+            </button>
+
+            <button
+              mat-raised-button
+              type="button"
+              *ngIf="IsinEditMode"
+              (click)="updateValue()"
+              class="btn btn-outline-success">
+              Update Product
+            </button>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <div class="card">
+        <div class="card-header">
+          Product Details
+        </div>
+        <div class="card-body">
+          <form [formGroup]="productForm" (ngSubmit)="submitForm()">
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="title">Title</label>
+                  <input
+                    type="text"
+                    formControlName="title"
+                    class="form-control"
+                  />
+                  <small
+                    class="text-danger"
+                    *ngIf="
+                      productForm.get('title')?.touched &&
+                      productForm.get('title')?.hasError('required')
+                    "
+                  >
+                    Title is required...
+                  </small>
+                </div>
+                <div class="form-group">
+                  <label for="brand">Brand</label>
+                  <input
+                    type="text"
+                    formControlName="brand"
+                    class="form-control"
+                  />
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                    productForm.get('brand')?.touched &&
+                    productForm.get('brand')?.hasError('required')
+                  "
+                >
+                  Brand is required...
+                </small>
+                </div>
+                <div class="form-group">
+                  <label for="quantity">Quantity</label>
+                  <input
+                    type="text"
+                    formControlName="quantity"
+                    class="form-control"
+                  />
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                    productForm.get('quantity')?.touched &&
+                    productForm.get('quantity')?.hasError('required')
+                  "
+                >
+                  Quantity is required...
+                </small>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="category">Category</label>
+                  <input
+                    type="text"
+                    formControlName="category"
+                    class="form-control"
+                  />
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                    productForm.get('category')?.touched &&
+                    productForm.get('category')?.hasError('required')
+                  "
+                >
+                  Category is required...
+                </small>
+                </div>
+                <div class="form-group">
+                  <label for="price">price</label>
+                  <input
+                    type="text"
+                    formControlName="price"
+                    class="form-control"
+                  />
+                   <small
+                   class="text-danger"
+                   *ngIf="
+                     productForm.get('price')?.touched &&
+                     productForm.get('price')?.hasError('required')
+                   "
+                 >
+                   Price is required...
+                 </small>
+                </div>
+                <div class="form-group">
+                  <label for="status">Status</label>
+                  <select
+                    type="text"
+                    formControlName="status"
+                    class="form-control"
+                  >
+                    <option>Available</option>
+                    <option>Not-available</option>
+                  </select>
+                  <small
+                   class="text-danger"
+                   *ngIf="
+                     productForm.get('status')?.touched &&
+                     productForm.get('status')?.hasError('required')
+                   "
+                 >
+                   Status is required...
+                 </small>
+                </div>
+                <div class="form-group">
+                  <label for="rating">rating</label>
+                  <input
+                    type="text"
+                    formControlName="status"
+                    class="form-control"
+                  />
+                  <small
+                  class="text-danger"
+                  *ngIf="
+                    productForm.get('rating')?.touched &&
+                    productForm.get('rating')?.hasError('required')
+                  "
+                >
+                  Rating is required...
+                </small>
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input
+                type="text"
+                formControlName="description"
+                class="form-control"
+              />
+              <small
+              class="text-danger"
+              *ngIf="
+                productForm.get('rating')?.touched &&
+                productForm.get('rating')?.hasError('required')
+              "
+            >
+              Rating is required...
+            </small>
+            </div>
+            <div class="form-group">
+              <label for="image">Image</label>
+              <input
+                type="text"
+                formControlName="image"
+                class="form-control"
+                placeholder="Image is optional/paste image url"
+              />
+            </div>
+            <button
+              type="submit"
+              *ngIf="!IsinEditMode"
+              class="btn btn-outline-primary btn-block"
+            >
+              Add Product
+            </button>
+            <button
+              type="button"
+              (click)="updateValue()"
+              *ngIf="IsinEditMode"
+              class="btn btn-outline-success btn-block"
+            >
+              Update Product
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

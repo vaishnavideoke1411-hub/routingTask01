@@ -1,0 +1,154 @@
+
+
+<div class="container">
+
+  <div class="row d-flex justify-content-end m-4">
+
+    <button class="btn btn-outline-info"
+      (click)="navigatetoForm()">
+      ADD PRODUCT
+    </button>
+
+  </div>
+
+  <div class="row">
+    <div class="col-md-4">
+
+      <ul class="list-group shadow">
+        <li
+          class="list-group-item"
+          [routerLink]="[product.id]"
+          routerLinkActive="active"
+          *ngFor="let product of productArr">
+
+          {{ product.title}}
+
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-8">
+
+      <router-outlet></router-outlet>
+
+    </div>
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div class="container">
+
+  <div class="row d-flex justify-content-between m-4">
+
+     <button class="btn btn-outline-info">
+      SignUp
+    </button> -->
+
+    <!-- <button
+      class="btn btn-outline-primary"
+      (click)="navigatetoForm()">
+      ADD PRODUCT
+
+
+
+
+    </button>
+
+  </div>
+
+  <div class="row">
+
+    <div class="col-md-4" *ngFor="let product of productArr">
+
+      <div
+        class="card shadow mb-3"
+        [routerLink]="['/product', product.id]"
+        style="cursor: pointer;">
+
+        <img
+          [src]="product.image"
+          class="card-img-top"
+          alt="Product"
+          style="height: 180px; object-fit: contain;">
+
+        <div class="card-body">
+
+          <h5 class="card-title">
+            {{ product.title }}
+          </h5>
+
+          <p>
+            Brand: {{ product.brand }}
+          </p>
+
+          <p>
+            Price: ₹{{ product.price }}
+          </p>
+
+          <p>
+            Quantity: {{ product.quantity }}
+          </p>
+
+          <button class="btn btn-outline-primary">
+            View Details
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="col-md-8">
+      <router-outlet></router-outlet>
+    </div>
+
+  </div>
+
+  <div *ngIf="productArr.length === 0">
+    No Products Available
+  </div>
+
+</div>  -->
+
+
+
+
+
+
+
+<!-- <div class="container">
+  <div class="row d-flex justify-content-between m-4">
+    <button class="btn btn-outline-info" >SignUp</button>
+    <button class="btn btn-outline-primary" (click)="navigatetoForm()">
+      ADD PRODUCT
+    </button>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <ul class="list-group shadow mb-2">
+        <a>
+          <li
+            class="list-group-item"
+            [routerLink]="[product.id]"
+            *ngFor="let product of productArr"
+          >
+            <span> Brand : {{ product.title }}
+              <strong>{{ product.id }}</strong>
+            </span>
+          </li>
+        </a>
+      </ul>
+    </div>
+  </div>
+</div> -->

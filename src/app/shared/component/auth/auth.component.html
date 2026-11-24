@@ -1,0 +1,161 @@
+<div class="auth-page">
+  <div class="auth-card shadow">
+    <div class="auth-brand">
+      <div class="brand-mark">R</div>
+      <div>
+        <h5>Routing Task</h5>
+        <p>{{ hasLogin ? 'Welcome back' : 'Create your account' }}</p>
+      </div>
+    </div>
+
+    <div class="auth-tabs" role="tablist">
+      <button
+        type="button"
+        [class.active]="hasLogin"
+        (click)="hasLogin || switchMode()">
+        Login
+      </button>
+      <button
+        type="button"
+        [class.active]="!hasLogin"
+        (click)="hasLogin && switchMode()">
+        Sign Up
+      </button>
+    </div>
+
+    <form *ngIf="hasLogin" [formGroup]="loginForm" (ngSubmit)="submitLogin()" novalidate>
+      <h3 class="mb-3">Login to your account</h3>
+
+      <div class="form-group mb-3">
+        <label>Email address</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="name@example.com">
+        <small
+          class="text-danger"
+          *ngIf="loginControls['email'].touched && loginControls['email'].hasError('required')">
+          Email is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="loginControls['email'].touched && loginControls['email'].hasError('email')">
+          Enter a valid email address
+        </small>
+      </div>
+
+      <div class="form-group mb-4">
+        <label>Password</label>
+        <div class="password-field">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="form-control"
+            placeholder="Enter your password">
+          <button type="button" (click)="showPassword = !showPassword">
+            {{ showPassword ? 'Hide' : 'Show' }}
+          </button>
+        </div>
+        <small
+          class="text-danger"
+          *ngIf="loginControls['password'].touched && loginControls['password'].hasError('required')">
+          Password is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="loginControls['password'].touched && loginControls['password'].hasError('minlength')">
+          Password must contain at least 6 characters
+        </small>
+      </div>
+
+      <button type="submit" class="btn auth-submit btn-block">
+        Login
+      </button>
+
+      <p class="auth-switch">
+        Don’t have an account?
+        <button type="button" (click)="switchMode()">Sign up</button>
+      </p>
+    </form>
+
+    <form *ngIf="!hasLogin" [formGroup]="signupForm" (ngSubmit)="submitSignup()" novalidate>
+      <h3 class="mb-3">Create an account</h3>
+
+      <div class="form-group mb-3">
+        <label>Full name</label>
+        <input
+          type="text"
+          formControlName="name"
+          class="form-control"
+          placeholder="Your name">
+        <small
+          class="text-danger"
+          *ngIf="signupControls['name'].touched && signupControls['name'].hasError('required')">
+          Name is required
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Email address</label>
+        <input
+          type="email"
+          formControlName="email"
+          class="form-control"
+          placeholder="name@example.com">
+        <small
+          class="text-danger"
+          *ngIf="signupControls['email'].touched && signupControls['email'].hasError('required')">
+          Email is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="signupControls['email'].touched && signupControls['email'].hasError('email')">
+          Enter a valid email address
+        </small>
+      </div>
+
+      <div class="form-group mb-3">
+        <label>Password</label>
+        <div class="password-field">
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            formControlName="password"
+            class="form-control"
+            placeholder="Minimum 6 characters">
+          <button type="button" (click)="showPassword = !showPassword">
+            {{ showPassword ? 'Hide' : 'Show' }}
+          </button>
+        </div>
+        <small
+          class="text-danger"
+          *ngIf="signupControls['password'].touched && signupControls['password'].hasError('required')">
+          Password is required
+        </small>
+        <small
+          class="text-danger"
+          *ngIf="signupControls['password'].touched && signupControls['password'].hasError('minlength')">
+          Password must contain at least 6 characters
+        </small>
+      </div>
+
+      <div class="form-group mb-4">
+        <label>User role</label>
+        <select formControlName="userRole" class="form-control">
+          <option value="buyer">Buyer</option>
+          <option value="admin">Admin</option>
+          <option value="superAdmin">SuperAdmin</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn auth-submit btn-block">
+        Create account
+      </button>
+
+      <p class="auth-switch">
+        Already have an account?
+        <button type="button" (click)="switchMode()">Login</button>
+      </p>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,117 @@
+
+<div class="container " *ngIf="userDetails as user">
+  <div class="row">
+    <!-- <div class="col-md-12"> -->
+        <div class="col-md-4">
+
+          <div class="card w-100">
+            <div class="card-header mt-0 text-center">
+              <h3><strong>{{ userDetails.name }}</strong></h3>
+            </div>
+
+            <div class="card-body">
+              <img  [src]="userDetails.imageUrl" />
+            <!-- </div> -->
+
+            
+              <h4 class="mt-4">
+                <strong>
+                  {{userDetails.role}} 
+                </strong>
+                <small><strong>({{userDetails.userRole}})</strong></small>
+              </h4>
+              <p>{{ userDetails.description }} </p>
+            </div>
+
+              <div class="card-footer">
+              <mat-card-actions class="d-flex justify-content-between">
+              <button
+                mat-mini-fab
+                color="primary"
+                (click)="editUser()"
+              >
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button
+                mat-mini-fab
+                color="warn"
+                (click)="onRemove()"
+              >
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+            </div>
+          </div>
+          <!-- <mat-card class="card shadow mt-4">
+            <img width="200px" height="200px" [src]="userDetails.imageUrl" />
+            <div mat-card-avatar class="header-image"></div>
+            <mat-card-title>{{ userDetails.name }}
+            </mat-card-title>
+
+            <mat-card-subtitle>
+              ({{userDetails.role}}/{{userDetails.userRole}})
+            </mat-card-subtitle>
+
+            <mat-card-content>{{ userDetails.description }} </mat-card-content>
+
+            
+          </mat-card> -->
+        </div> 
+        <div class="col-md-8">
+           <div class="card mb-4">
+             <mat-card class="example-card w-100 shadow ">
+              <mat-card-title><h2><strong>User Information</strong></h2></mat-card-title>
+              <mat-card-content>
+                <p>
+                  <strong>Experience:</strong> {{ userDetails.experience }} years
+                </p>
+                <p><strong>Role:</strong> {{ userDetails.role }}</p>
+              </mat-card-content>
+            </mat-card>
+            <br />
+           </div>
+
+            <mat-card class=" mt-4">
+              <mat-card-title><h2><strong>Skills</strong></h2></mat-card-title>
+
+              <mat-card-content>
+                <mat-chip-list *ngIf="userDetails.skills.length; else noSkills">
+                  <mat-chip *ngFor="let skill of userDetails.skills">
+                    {{ skill }}
+                  </mat-chip>
+                </mat-chip-list>
+
+                <ng-template #noSkills>
+                  <p>No skills available.</p>
+                </ng-template>
+                
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class=" shadow mt-4">
+              <mat-card-content>
+                <div class="row">
+                  <div class="col-md-6">
+                    <h4><strong>Current Address</strong></h4>
+                    <p>{{ userDetails.address.currentAddress.country }}</p>
+                    <p>{{ userDetails.address.currentAddress.state }}</p>
+                    <p>{{ userDetails.address.currentAddress.city }}</p>
+                    <p>{{ userDetails.address.currentAddress.zipcode }}</p>
+                  </div>
+                  <div class="col-md-6">
+                    <h4><strong>Permanent Address</strong></h4>
+                    <p>{{ userDetails.address.permanentAddress.country }}</p>
+                    <p>{{ userDetails.address.permanentAddress.state }}</p>
+                    <p>{{ userDetails.address.permanentAddress.city }}</p>
+                    <p>{{ userDetails.address.permanentAddress.zipcode }}</p>
+                  </div>
+                </div>
+                
+              </mat-card-content>
+              <mat-card-footer> </mat-card-footer>
+            </mat-card>
+            <br />
+        </div>
+    <!-- </div> -->
+  </div>
+</div>
